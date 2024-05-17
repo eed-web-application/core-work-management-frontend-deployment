@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-work-management-frontend-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: core-work-management-frontend

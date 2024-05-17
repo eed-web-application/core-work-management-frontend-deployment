@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-work-management-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-work-management-frontend
+  template:
+    metadata:
+      labels:
+        app: core-work-management-frontend
+    spec:
+      containers:
+        - name: core-work-management-frontend
+          image: core-work-management-frontend-image
