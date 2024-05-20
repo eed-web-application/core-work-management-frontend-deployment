@@ -36,6 +36,7 @@ jobs:
           # Generate Docker tags based on the following attributes
           tags: |
             type=sha
+            latest
           labels: |
             maintainer=tiffany@slac.stanford.edu
 
@@ -63,6 +64,14 @@ jobs:
           app-private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - run: |
-          gh workflow --repo eed-web-application/core-work-management-frontend-deployment run Deploy -f image="${{ needs.create-image.outputs.IMAGE_TO_DEPLOY }}"
+          for tag in $(echo "${{ needs.create-image.outputs.IMAGE_TO_DEPLOY }}" | sed "s/,/ /g")
+                do
+                  if [[ $tag =~ sha- ]]; then
+                    IMAGE_SHA_TAG=$tag
+                    break
+                  fi
+                done
+                echo "Use image $IMAGE_SHA_TAG for deployment"
+          gh workflow --repo eed-web-application/core-work-management-frontend-deployment run Deploy -f image="$IMAGE_SHA_TAG"
         env:
           GITHUB_TOKEN: ${{ steps.githubAppAuth.outputs.access-token }}
