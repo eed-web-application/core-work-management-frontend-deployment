@@ -4,4 +4,4 @@ resources:
   - ../../base
 images:
   - name: core-work-management-frontend-image
-    newName: ghcr.io/eed-web-application/core-work-management-frontend:sha-8ff8995
+    newName: ghcr.io/eed-web-application/core-work-management-frontend:sha-fe4fb77
