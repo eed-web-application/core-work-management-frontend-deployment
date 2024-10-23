@@ -21,7 +21,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /cwm(.*)
+            path: /home(.*)
             backend:
               service:
                 name: core-work-management-frontend-service
